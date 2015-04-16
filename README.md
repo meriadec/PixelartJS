@@ -21,6 +21,12 @@ I'm open to any suggestions, feel free to ask / pull request !
 bower install pixelart --save
 ```
 
+Add dependency:
+
+```html
+<script src="bower_components/pixelart/dist/pixelart.min.js"></script>
+```
+
 ## Usage
 
 ```html
