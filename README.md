@@ -3,6 +3,7 @@
 </p>
 
 <p align="center">
+  <a href="https://travis-ci.org/meriadec/PixelartJS"><img src="https://travis-ci.org/meriadec/PixelartJS.svg?branch=master" /></a>
   <a href="https://codeclimate.com/github/meriadec/PixelartJS"><img src="https://codeclimate.com/github/meriadec/PixelartJS/badges/gpa.svg" /></a>
 </p>
 
