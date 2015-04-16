@@ -1,0 +1,16 @@
+{
+  "name": "PixelartJS",
+  "version": "0.1.0",
+  "homepage": "https://github.com/meriadec/PixelartJS",
+  "authors": [
+    "meriadec <meriadec.pillet@gmail.com>"
+  ],
+  "description": "A simple and lightweight tool for generating pixel art",
+  "main": "dist/pixelart.min.js",
+  "keywords": [
+    "pixelart",
+    "canvas",
+    "drawing"
+  ],
+  "license": "BSD"
+}
