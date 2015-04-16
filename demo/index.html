@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Demo</title>
+    <style>
+      body {
+        margin-top: 100px;
+      }
+      canvas {
+        display: block;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="logo"></div>
+
+    <script src="../src/pixelart.js"></script>
+
+    <script>
+
+      var target  = document.getElementById('logo');
+      var ascii   = [
+        'aaaa',
+        'a  a',
+        'aa a  b  c  c dddd e    ffff gggg hhhh      j kkkk',
+        'aaa   b   cc  d dd e       f g     hh       j k',
+        'a     b   cc  d    e    ff f g g   hh       j  kkk',
+        'a     b  c  c dddd eeee ffff g  g  hh  i jjjj k kk'
+      ];
+
+      new Pixelart(target, ascii, {
+        colorMap: {
+          a: '#002b36',
+          b: '#073642',
+          c: '#586e75',
+          d: '#657b83',
+          e: '#839496',
+          f: '#93a1a1',
+          g: '#93a1a1',
+          h: '#93a1a1',
+          i: '#d33682',
+          j: '#6c71c4',
+          k: '#268bd2'
+        }
+      }).draw();
+
+    </script>
+  </body>
+</html>
