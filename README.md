@@ -17,7 +17,9 @@ I'm open to any suggestions, feel free to ask / pull request !
 
 ## Install
 
-bower registration coming soon !
+```
+bower install pixelart --save
+```
 
 ## Usage
 
