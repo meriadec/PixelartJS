@@ -2,6 +2,10 @@
   <img src="logo.png">
 </p>
 
+<p align="center">
+  <a href="https://codeclimate.com/github/meriadec/PixelartJS"><img src="https://codeclimate.com/github/meriadec/PixelartJS/badges/gpa.svg" /></a>
+</p>
+
 ## WTF is that?
 
 PixelartJS is a small tool which allows you to generate canvas images from characters.
