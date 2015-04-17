@@ -2,38 +2,133 @@
 <html>
   <head>
     <title>Demo</title>
-    <style>
-      body {
-        margin-top: 100px;
-      }
-      canvas {
-        display: block;
-        margin: 0 auto;
-      }
-    </style>
+    <link rel="stylesheet" href="demo.css">
   </head>
   <body>
 
     <div id="logo"></div>
 
-    <script src="../src/pixelart.js"></script>
+
+
+   <div class="demo-title">
+     Basic
+   </div>
+   <div class="demo">
+      <section id="basic"></section>
+<pre>
+new Pixelart(
+  document.getElementById('basic'),
+  [
+    '  o     o',
+    '   o   o',
+    '  ooooooo',
+    ' oo ooo oo',
+    'ooooooooooo',
+    'o ooooooo o',
+    'o o     o o',
+    '   oo oo'
+  ]
+).draw();
+</pre>
+    </div>
+
+
+
+
+   <div class="demo-title">
+     Colored
+   </div>
+   <div class="demo">
+      <section id="colored"></section>
+<pre>
+new Pixelart(
+  document.getElementById('colored'),
+  [
+    '  ooooooo',
+    ' ooooooooo',
+    'ooooooooooo',
+    '  oooooooooo',
+    '    oooooooo',
+    '      oooooo',
+    '    oooooooo',
+    '  oooooooooo',
+    'ooooooooooo',
+    ' ooooooooo',
+    '  ooooooo'
+  ],
+  { color: '#FFEE00' }
+).draw();
+</pre>
+    </div>
+
+
+
+
+   <div class="demo-title">
+     Color map
+   </div>
+   <div class="demo">
+      <section id="colormap"></section>
+<pre>
+new Pixelart(
+  document.getElementById('colormap'),
+  [
+    'acabcdccac',
+    'bacbcacbda',
+    'dcoodboodb',
+    'ccoocboocb',
+    'bdcdoodbcd',
+    'bdboooocdd',
+    'bdcoooocbd',
+    'cbcoddobcc',
+    'dbdcabcdcd',
+    'dcdbaabcdc'
+  ],
+  {
+    colorMap: {
+      a: '#1c9e13',
+      b: '#4aad3d',
+      c: '#90c98b',
+      d: '#bed9ba'
+    }
+  }
+).draw();
+</pre>
+    </div>
+
+
+
+
+
+    <div class="footer">
+      <div>
+        Made with
+      </div>
+      <div>
+        <span id="heart"></span>
+      </div>
+    </div>
+
+    <script src="https://cdn.rawgit.com/meriadec/PixelartJS/1ab80018f109d00b5bdc8610d9054e5801bfbb3b/dist/pixelart.min.js"></script>
 
     <script>
 
-      var target  = document.getElementById('logo');
-      var ascii   = [
-        'aaaa',
-        'a  a',
-        'aa a  b  c  c dddd e    ffff gggg hhhhh      j kkkk',
-        'aaa   b   cc  d dd e       f g      h        j k',
-        'a     b   cc  d    e    ff f g g    h        j  kkk',
-        'a     b  c  c dddd eeee ffff g  g   h   i jjjj k kk'
-      ];
+      // Title
 
-      new Pixelart(target, ascii, {
+      new Pixelart(
+        document.getElementById('logo'),
+        [
+          'aaaa',
+          'a  a',
+          'aa a  b  c  c dddd e    ffff gggg hhhhh      j kkkk',
+          'aaa   b   cc  d dd e       f g      h        j k',
+          'a     b   cc  d    e    ff f g g    h        j  kkk',
+          'a     b  c  c dddd eeee ffff g  g   h   i jjjj k kk'
+        ],
+        {
         colorMap: {
           a: '#002b36',
-          b: '#073642',
+          b: '#586e75',
           c: '#586e75',
           d: '#657b83',
           e: '#839496',
@@ -45,6 +140,91 @@
           k: '#268bd2'
         }
       }).draw();
+
+      // Hearth
+
+      new Pixelart(
+        document.getElementById('heart'),
+        [
+          '  ooo   ooo',
+          ' ooooo ooooo',
+          'ooooooooooooo',
+          'ooooooooooooo',
+          'ooooooooooooo',
+          ' ooooooooooo',
+          '  ooooooooo',
+          '   ooooooo',
+          '    ooooo',
+          '     ooo',
+          '      o'
+        ],
+        {
+          pixelSize: 2,
+          color: '#FF0000'
+        }
+      ).draw();
+
+      // Basic
+
+      new Pixelart(
+        document.getElementById('basic'),
+        [
+          '  o     o',
+          '   o   o',
+          '  ooooooo',
+          ' oo ooo oo',
+          'ooooooooooo',
+          'o ooooooo o',
+          'o o     o o',
+          '   oo oo'
+        ]
+      ).draw();
+
+      // Colored
+
+      new Pixelart(
+        document.getElementById('colored'),
+        [
+          '  ooooooo',
+          ' ooooooooo',
+          'ooooooooooo',
+          '  oooooooooo',
+          '    oooooooo',
+          '      oooooo',
+          '    oooooooo',
+          '  oooooooooo',
+          'ooooooooooo',
+          ' ooooooooo',
+          '  ooooooo'
+        ],
+        { color: '#FFEE00' }
+      ).draw();
+
+      // Color map
+
+      new Pixelart(
+        document.getElementById('colormap'),
+        [
+          'acabcdccac',
+          'bacbcacbda',
+          'dcoodboodb',
+          'ccoocboocb',
+          'bdcdoodbcd',
+          'bdboooocdd',
+          'bdcoooocbd',
+          'cbcoddobcc',
+          'dbdcabcdcd',
+          'dcdbaabcdc'
+        ],
+        {
+          colorMap: {
+            a: '#1c9e13',
+            b: '#4aad3d',
+            c: '#90c98b',
+            d: '#bed9ba'
+          }
+        }
+      ).draw();
 
     </script>
   </body>
