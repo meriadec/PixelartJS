@@ -59,3 +59,21 @@ body {
 .footer > div {
   padding: 0 5px;
 }
+
+.github {
+  margin-bottom: 5em;
+  text-align: center;
+}
+
+.github a {
+  color: #657b83;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 3px;
+  transition: 150ms ease-out border-color;
+}
+
+.github a:hover {
+  border-bottom-color: #d33682;
+}
