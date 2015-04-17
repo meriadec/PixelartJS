@@ -1,0 +1,61 @@
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+body {
+  background: #073642;
+  color: #93a1a1;
+  padding-bottom: 250px;
+  position: relative;
+}
+
+#logo {
+  margin: 100px auto;
+}
+
+.demo canvas, #logo canvas {
+  display: block;
+  margin: 0 auto;
+}
+
+.demo, .demo-title {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.demo {
+  margin-bottom: 4em;
+}
+
+.demo > section, .demo > pre {
+  width: 50%;
+  padding: 1em;
+  margin: 0;
+}
+
+.demo > pre {
+  background: rgba(0,0,0,.1);
+  border: 1px solid rgba(255,255,255,.05);
+  box-shadow: rgba(0,0,0,.3) 0 2px 2px;
+}
+
+.demo-title {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.footer {
+  text-align: center;
+  position: absolute;
+  bottom: 100px;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.footer > div {
+  padding: 0 5px;
+}
