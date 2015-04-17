@@ -1,0 +1,16 @@
+.jscsrc
+.jshintrc
+.travis.yml
+README.md
+bower.json
+demo/
+dist/
+gulpfile.js
+karma.conf.js
+logo.png
+package.json
+src/
+tasks/
+test/
+coverage/
+node_modules/
