@@ -9,6 +9,10 @@
   <a href="http://js.org"><img src="https://img.shields.io/badge/js.org-pixelart-ffb400.svg?style=flat" alt="JS.ORG"></a>
 </p>
 
+<p align="center">
+  <img src="demo/invader.png">
+</p>
+
 ## WTF is that?
 
 PixelartJS is a small tool which allows you to generate canvas images from characters.
