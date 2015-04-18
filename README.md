@@ -46,6 +46,57 @@ var ascii  = [
 ];
 
 new Pixelart(target, ascii).draw();
+
+// passing options
+
+var options = {
+  // ...
+};
+
+new Pixelart(target, ascii, options).draw();
+
+```
+
+## Options
+
+### pixelSize
+
+Type: `Number`
+
+*Size in pixels of each square.*
+
+```js
+new Pixelart(target, ascii, { color: '#FF0000' }).draw();
+```
+
+### color
+
+Type: `String (hex color)`
+
+*Default color for all non-blank characters.*
+
+```js
+new Pixelart(target, ascii, { color: '#FF0000' }).draw();
+```
+
+### colorMap
+
+Type: `Object`
+
+*Specify color for specific characters.*
+
+```js
+new Pixelart(
+  target,
+  ascii,
+  {
+    colorMap: {
+      a: '#FF0000',
+      b: '#00FF00',
+      c: '#0000FF'
+    }
+  }
+}).draw();
 ```
 
 ## License
