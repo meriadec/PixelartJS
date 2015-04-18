@@ -4,6 +4,7 @@
     <title>Demo</title>
     <link rel="stylesheet" href="solarized.css">
     <link href='http://fonts.googleapis.com/css?family=Domine' rel='stylesheet' type='text/css'>
+    <link href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="demo.css">
   </head>
   <body>
@@ -93,6 +94,43 @@
       c: '#90c98b',
       d: '#bed9ba'
     }
+  }
+);
+</code></pre>
+    </div>
+
+
+
+
+   <div class="demo-title">
+     Stagger
+   </div>
+   <div class="demo">
+      <section>
+        <div id="stagger"></div>
+        <button id="staggerAgain" class="nice-btn">
+          <i class="ion-ios-refresh-empty"></i>
+          <span>
+          run again
+          </span>
+        </button>
+      </section>
+      <pre><code class="javascript">new Pixelart(
+  document.getElementById('stagger'),
+  [
+    ' oo        oo',
+    'o  o oooo o  o',
+    '    oooooo',
+    ' oooooooooooo',
+    'o   oooooo   o',
+    '  ooo oo ooo',
+    ' o  oooooo  o',
+    'o  o o  o o  o',
+    '  o        o',
+    '  o        o'
+  ],
+  {
+    stagger: 30
   }
 );
 </code></pre>
@@ -229,6 +267,33 @@
           }
         }
       );
+
+      // Stagger
+
+      function runStagger () {
+        var stagger = document.getElementById('stagger');
+        while (stagger.firstChild) { stagger.removeChild(stagger.firstChild); }
+        new Pixelart(
+          stagger,
+          [
+            ' oo        oo',
+            'o  o oooo o  o',
+            '    oooooo',
+            ' oooooooooooo',
+            'o   oooooo   o',
+            '  ooo oo ooo',
+            ' o  oooooo  o',
+            'o  o o  o o  o',
+            '  o        o',
+            '  o        o'
+          ],
+          {
+            stagger: 30
+          }
+        );
+      }
+      runStagger();
+      document.getElementById('staggerAgain').onclick = runStagger;
 
     </script>
   </body>
