@@ -70,7 +70,7 @@ Type: `Number`
 *Size in pixels of each square.*
 
 ```js
-new Pixelart(target, ascii, { color: '#FF0000' });
+new Pixelart(target, ascii, { pixelSize: 2 });
 ```
 
 ### color
