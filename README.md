@@ -16,7 +16,7 @@ It's purpose is to be customizable as well, for the moment you change parameters
 
 I'm open to any suggestions, feel free to ask / pull request !
 
-[**DEMO**](http://meriadec.github.io/PixelartJS/)
+[**DEMO**](http://pixelart.js.org/)
 
 ## Install
 
