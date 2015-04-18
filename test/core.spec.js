@@ -33,7 +33,7 @@ describe('PixelartJS', function () {
 
   it('should create a canvas, with right dimensions', function () {
 
-    var p = new Pixelart(elem, mock.ascii_1).draw();
+    var p = new Pixelart(elem, mock.ascii_1);
 
     expect(elem.firstElementChild).not.toBeNull();
     expect(elem.firstElementChild.nodeName).toBe('CANVAS');
@@ -58,7 +58,6 @@ describe('PixelartJS', function () {
     el.id = 'yolo';
     document.body.appendChild(el);
     var p = new Pixelart($('#yolo'), mock.ascii_1);
-    p.draw();
     expect(el.firstElementChild).not.toBeNull();
     expect(el.firstElementChild.nodeName).toBe('CANVAS');
   });
@@ -72,7 +71,7 @@ describe('PixelartJS', function () {
         c: '#0000FF'
       },
       pixelSize: 1
-    }).draw();
+    });
 
     var canvas = elem.firstElementChild;
     var ctx = canvas.getContext('2d');

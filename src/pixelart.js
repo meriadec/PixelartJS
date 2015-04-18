@@ -11,6 +11,7 @@ var Pixelart = (function () { // jshint ignore:line
     this.options = options;
 
     this._cleanOptions();
+    this.draw();
 
     return this;
 

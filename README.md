@@ -45,7 +45,7 @@ var ascii  = [
   'oooo o  o'
 ];
 
-new Pixelart(target, ascii).draw();
+new Pixelart(target, ascii);
 
 // passing options
 
@@ -53,7 +53,7 @@ var options = {
   // ...
 };
 
-new Pixelart(target, ascii, options).draw();
+new Pixelart(target, ascii, options);
 
 ```
 
@@ -66,7 +66,7 @@ Type: `Number`
 *Size in pixels of each square.*
 
 ```js
-new Pixelart(target, ascii, { color: '#FF0000' }).draw();
+new Pixelart(target, ascii, { color: '#FF0000' });
 ```
 
 ### color
@@ -76,7 +76,7 @@ Type: `String (hex color)`
 *Default color for all non-blank characters.*
 
 ```js
-new Pixelart(target, ascii, { color: '#FF0000' }).draw();
+new Pixelart(target, ascii, { color: '#FF0000' });
 ```
 
 ### colorMap
@@ -96,7 +96,7 @@ new Pixelart(
       c: '#0000FF'
     }
   }
-}).draw();
+});
 ```
 
 ## License
