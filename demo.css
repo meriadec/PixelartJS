@@ -1,3 +1,8 @@
+/**
+ * This css is ugly.
+ * Don't judge me :D
+ */
+
 *, *:after, *:before {
   box-sizing: border-box;
 }
@@ -15,10 +20,12 @@ body {
   color: #93a1a1;
   padding-bottom: 250px;
   position: relative;
+  border-top: 10px solid #002b36;
+  margin: 0;
 }
 
 #logo {
-  margin: 100px auto;
+  padding: 100px;
 }
 
 .demo canvas, #logo canvas {
@@ -33,6 +40,12 @@ body {
   margin: 0 auto;
 }
 
+@media (max-width: 799px) {
+  .demo {
+    flex-direction: column;
+  }
+}
+
 .demo {
   margin-bottom: 4em;
 }
@@ -42,12 +55,17 @@ body {
   margin: 0;
 }
 
+@media (max-width: 799px) {
+  .demo > section, .demo > pre {
+    width: 90%;
+  }
+}
+
 .demo > pre {
   box-shadow: rgba(0,0,0,.3) 0 3px 5px;
 }
 
 .demo > section {
-  background: rgba(255,255,255,.1);
   padding: 1em;
   position: relative;
 }
@@ -59,11 +77,11 @@ body {
 }
 
 .footer {
+  border-bottom: 10px solid #002b36;
   text-align: center;
   position: absolute;
   bottom: 0;
   padding: 50px;
-  background-color: rgba(0,0,0,.1);
   left: 0; right: 0;
   display: flex;
   justify-content: center;
@@ -75,22 +93,21 @@ body {
 }
 
 .github {
-  margin-bottom: 5em;
+  margin-bottom: 7em;
   text-align: center;
 }
 
 .github a {
-  color: #657b83;
+  color: #073642;
   text-decoration: none;
   font-weight: bold;
-  border-bottom: 2px solid transparent;
+  border-bottom: 3px solid transparent;
   padding: 5px;
   transition: 250ms ease-out all;
 }
 
 .github a:hover {
-  border-bottom-color: #d33682;
-  background: #002b36;
+  border-bottom-color: #b58900;
 }
 
 .nice-btn {
@@ -100,6 +117,7 @@ body {
   border: 1px solid rgba(255,255,255,.2);
   padding: .25em .5em;
   box-shadow: rgba(0,0,0,.4) 0 1px 3px;
+  font-size: 13px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -119,7 +137,5 @@ body {
 }
 
 #staggerAgain {
-  position: absolute;
-  top: 0;
-  left: 0;
+  margin-left: 30px;
 }
