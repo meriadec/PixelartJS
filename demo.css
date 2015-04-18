@@ -3,6 +3,7 @@
 }
 
 body {
+  font-family: 'Domine', serif;
   background: #073642;
   color: #93a1a1;
   padding-bottom: 250px;
@@ -31,13 +32,10 @@ body {
 
 .demo > section, .demo > pre {
   width: 50%;
-  padding: 1em;
   margin: 0;
 }
 
 .demo > pre {
-  background: rgba(0,0,0,.1);
-  border: 1px solid rgba(255,255,255,.05);
   box-shadow: rgba(0,0,0,.3) 0 2px 2px;
 }
 
