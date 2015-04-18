@@ -76,9 +76,9 @@ describe('PixelartJS', function () {
     var canvas = elem.firstElementChild;
     var ctx = canvas.getContext('2d');
 
-    expect(getPixelColor(ctx, 0, 0)).toEqual({ r: 255, g:   0, b:   0 });
-    expect(getPixelColor(ctx, 1, 0)).toEqual({ r:   0, g: 255, b:   0 });
-    expect(getPixelColor(ctx, 2, 0)).toEqual({ r:   0, g:   0, b: 255 });
+    expect(getPixelColor(ctx, 0, 0)).toEqual({ r: 255, g:   0, b:   0, a: 255 });
+    expect(getPixelColor(ctx, 1, 0)).toEqual({ r:   0, g: 255, b:   0, a: 255 });
+    expect(getPixelColor(ctx, 2, 0)).toEqual({ r:   0, g:   0, b: 255, a: 255 });
   });
 
 });
@@ -90,6 +90,7 @@ function getPixelColor (ctx, x, y) {
   return {
     r: data[0],
     g: data[1],
-    b: data[2]
+    b: data[2],
+    a: data[3]
   };
 }
