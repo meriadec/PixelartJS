@@ -2,6 +2,13 @@
   box-sizing: border-box;
 }
 
+::selection {
+  background: rgba(0,0,0,.2);
+}
+::-moz-selection {
+  background: rgba(0,0,0,.2);
+}
+
 body {
   font-family: 'Domine', serif;
   background: #073642;
