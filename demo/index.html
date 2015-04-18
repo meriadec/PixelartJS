@@ -2,6 +2,8 @@
 <html>
   <head>
     <title>Demo</title>
+    <link rel="stylesheet" href="solarized.css">
+    <link href='http://fonts.googleapis.com/css?family=Domine' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="demo.css">
   </head>
   <body>
@@ -18,8 +20,7 @@
    </div>
    <div class="demo">
       <section id="basic"></section>
-<pre>
-new Pixelart(
+      <pre><code class="javascript">new Pixelart(
   document.getElementById('basic'),
   [
     '  o     o',
@@ -32,7 +33,7 @@ new Pixelart(
     '   oo oo'
   ]
 ).draw();
-</pre>
+</code></pre>
     </div>
 
 
@@ -43,8 +44,7 @@ new Pixelart(
    </div>
    <div class="demo">
       <section id="colored"></section>
-<pre>
-new Pixelart(
+      <pre><code class="javascript">new Pixelart(
   document.getElementById('colored'),
   [
     '  ooooooo',
@@ -61,7 +61,7 @@ new Pixelart(
   ],
   { color: '#FFEE00' }
 ).draw();
-</pre>
+</code></pre>
     </div>
 
 
@@ -72,8 +72,7 @@ new Pixelart(
    </div>
    <div class="demo">
       <section id="colormap"></section>
-<pre>
-new Pixelart(
+      <pre><code class="javascript">new Pixelart(
   document.getElementById('colormap'),
   [
     'acabcdccac',
@@ -96,7 +95,7 @@ new Pixelart(
     }
   }
 ).draw();
-</pre>
+</code></pre>
     </div>
 
 
@@ -113,6 +112,8 @@ new Pixelart(
     </div>
 
     <script src="https://cdn.rawgit.com/meriadec/PixelartJS/1ab80018f109d00b5bdc8610d9054e5801bfbb3b/dist/pixelart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 
     <script>
 
