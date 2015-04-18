@@ -12,7 +12,10 @@
     <div id="logo"></div>
 
     <div class="github">
-      <a target="_blank" href="http://github.com/meriadec/PixelartJS">see project on github</a>
+      <a target="_blank" href="http://github.com/meriadec/PixelartJS">
+        <i class="ion-social-github"></i>
+        see project on github
+      </a>
     </div>
 
 
@@ -144,8 +147,8 @@
       <div>
         Made with
       </div>
-      <div>
-        <span id="heart"></span>
+      <div><a href="http://www.vim.org/" target="_blank">
+          <span id="vim"></span></a>
       </div>
     </div>
 
@@ -154,6 +157,27 @@
     <script>hljs.initHighlightingOnLoad();</script>
 
     <script>
+
+      // Vim
+      new Pixelart(
+        document.getElementById('vim'),
+        [
+          ',,,,,,,,,,,,,,,,,,,,,,,,,,,,',
+          ',oo,,,,,,,,oo,oo,ooo,,,,ooo,',
+          ',,oo,,,,,,oo,,oo,oooo,,oooo,',
+          ',,,oo,,,,oo,,,oo,oo,oooo,oo,',
+          ',,,,oo,,oo,,,,oo,oo,,oo,,oo,',
+          ',,,,,oooo,,,,,oo,oo,,,,,,oo,',
+          ',,,,,,oo,,,,,,oo,oo,,,,,,oo,',
+          ',,,,,,,,,,,,,,,,,,,,,,,,,,,,'
+        ],
+        {
+          pixelSize: 3,
+          colorMap: {
+            ',': '#FFFFFF'
+          }
+        }
+      );
 
       // Title
 
@@ -172,39 +196,16 @@
           a: '#002b36',
           b: '#586e75',
           c: '#586e75',
-          d: '#657b83',
+          d: '#073642',
           e: '#839496',
           f: '#93a1a1',
           g: '#93a1a1',
           h: '#93a1a1',
           i: '#d33682',
-          j: '#6c71c4',
-          k: '#268bd2'
+          j: '#b58900',
+          k: '#b58900'
         }
       });
-
-      // Hearth
-
-      new Pixelart(
-        document.getElementById('heart'),
-        [
-          '  ooo   ooo',
-          ' ooooo ooooo',
-          'ooooooooooooo',
-          'ooooooooooooo',
-          'ooooooooooooo',
-          ' ooooooooooo',
-          '  ooooooooo',
-          '   ooooooo',
-          '    ooooo',
-          '     ooo',
-          '      o'
-        ],
-        {
-          pixelSize: 2,
-          color: '#FF0000'
-        }
-      );
 
       // Basic
 
