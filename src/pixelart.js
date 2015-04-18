@@ -28,7 +28,8 @@ var Pixelart = (function () { // jshint ignore:line
     this.options = {
       pixelSize: this.options.pixelSize || 10,
       color: this.options.color ? hexToRgb(this.options.color) : { r: 0, g: 0, b: 0 },
-      colorMap: this.options.colorMap ? this._buildColorMap(this.options.colorMap) : null
+      colorMap: this.options.colorMap ? this._buildColorMap(this.options.colorMap) : null,
+      stagger: this.options.stagger || 0
     };
   };
 
@@ -89,17 +90,42 @@ var Pixelart = (function () { // jshint ignore:line
 
   Pixelart.prototype.draw = function () {
 
+    // clean element
+    while (this.target.firstChild) { this.target.removeChild(this.target.firstChild); }
+
     var canvas = this._createCanvas();
     var ctx = canvas.getContext('2d');
+    var i = 0;
+    var fillStyle;
 
     this._iterate(function (char, x, y) {
       if (char === ' ') { return; }
       if (this.options.colorMap && char in this.options.colorMap) {
-        ctx.fillStyle = canvasColor(this.options.colorMap[char]);
+        fillStyle = canvasColor(this.options.colorMap[char]);
       } else {
-        ctx.fillStyle = canvasColor(this.options.color);
+        fillStyle = canvasColor(this.options.color);
       }
-      ctx.fillRect(x * this.options.pixelSize, y * this.options.pixelSize, this.options.pixelSize, this.options.pixelSize);
+      if (this.options.stagger && i !== 0) {
+        setTimeout(
+          drawRect(
+            ctx,
+            fillStyle,
+            x * this.options.pixelSize,
+            y * this.options.pixelSize,
+            this.options.pixelSize
+          ),
+          this.options.stagger * i
+        );
+      } else {
+        ctx.fillStyle = fillStyle;
+        ctx.fillRect(
+          x * this.options.pixelSize,
+          y * this.options.pixelSize,
+          this.options.pixelSize,
+          this.options.pixelSize
+        );
+      }
+      ++i;
     });
 
     this.target.appendChild(canvas);
@@ -109,6 +135,13 @@ var Pixelart = (function () { // jshint ignore:line
   };
 
   // utils
+
+  function drawRect (ctx, fillStyle, x, y, size) {
+    return function () {
+      ctx.fillStyle = fillStyle;
+      ctx.fillRect(x, y, size, size);
+    };
+  }
 
   function hexToRgb (hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);

@@ -99,6 +99,22 @@ new Pixelart(
 });
 ```
 
+### stagger
+
+Type: `Number (of milliseconds)`
+
+*"Animate" drawing by putting delay between each block draw.*
+
+```js
+new Pixelart(
+  target,
+  ascii,
+  {
+    stagger: 50
+  }
+});
+```
+
 ## License
 
 BSD

@@ -81,6 +81,87 @@ describe('PixelartJS', function () {
     expect(getPixelColor(ctx, 2, 0)).toEqual({ r:   0, g:   0, b: 255, a: 255 });
   });
 
+  it('should draw with a stagger', function (done) {
+
+    new Pixelart(elem, [
+        'oo',
+        'oo'
+      ], {
+      stagger: 100,
+      pixelSize: 1
+    });
+
+    var canvas = elem.firstElementChild;
+    var ctx = canvas.getContext('2d');
+
+    expect(getPixelColor(ctx, 0, 0)).toEqual({ r: 0, g: 0, b: 0, a: 255 });
+    expect(getPixelColor(ctx, 1, 0)).toEqual({ r: 0, g: 0, b: 0, a: 0 });
+
+    setTimeout(function () {
+      expect(getPixelColor(ctx, 1, 0)).toEqual({ r: 0, g: 0, b: 0, a: 255 });
+      expect(getPixelColor(ctx, 0, 1)).toEqual({ r: 0, g: 0, b: 0, a: 0 });
+      expect(getPixelColor(ctx, 1, 1)).toEqual({ r: 0, g: 0, b: 0, a: 0 });
+    }, 150);
+
+    setTimeout(function () {
+      expect(getPixelColor(ctx, 1, 0)).toEqual({ r: 0, g: 0, b: 0, a: 255 });
+      expect(getPixelColor(ctx, 0, 1)).toEqual({ r: 0, g: 0, b: 0, a: 255 });
+      expect(getPixelColor(ctx, 1, 1)).toEqual({ r: 0, g: 0, b: 0, a: 0 });
+    }, 250);
+
+    setTimeout(function () {
+      expect(getPixelColor(ctx, 1, 0)).toEqual({ r: 0, g: 0, b: 0, a: 255 });
+      expect(getPixelColor(ctx, 0, 1)).toEqual({ r: 0, g: 0, b: 0, a: 255 });
+      expect(getPixelColor(ctx, 1, 1)).toEqual({ r: 0, g: 0, b: 0, a: 255 });
+    }, 300);
+
+    setTimeout(done, 400);
+
+  });
+
+  it('should stagger without breaking color map', function (done) {
+
+    new Pixelart(elem, [
+        'oa',
+        'bc'
+      ], {
+      colorMap: {
+        a: '#FF0000',
+        b: '#00FF00',
+        c: '#0000FF'
+      },
+      stagger: 100,
+      pixelSize: 1
+    });
+
+    var canvas = elem.firstElementChild;
+    var ctx = canvas.getContext('2d');
+
+    expect(getPixelColor(ctx, 0, 0)).toEqual({ r: 0, g: 0, b: 0, a: 255 });
+    expect(getPixelColor(ctx, 1, 0)).toEqual({ r: 0, g: 0, b: 0, a: 0 });
+
+    setTimeout(function () {
+      expect(getPixelColor(ctx, 1, 0)).toEqual({ r: 255, g: 0, b: 0, a: 255 });
+      expect(getPixelColor(ctx, 0, 1)).toEqual({ r: 0, g: 0, b: 0, a: 0 });
+      expect(getPixelColor(ctx, 1, 1)).toEqual({ r: 0, g: 0, b: 0, a: 0 });
+    }, 150);
+
+    setTimeout(function () {
+      expect(getPixelColor(ctx, 1, 0)).toEqual({ r: 255, g: 0, b: 0, a: 255 });
+      expect(getPixelColor(ctx, 0, 1)).toEqual({ r: 0, g: 255, b: 0, a: 255 });
+      expect(getPixelColor(ctx, 1, 1)).toEqual({ r: 0, g: 0, b: 0, a: 0 });
+    }, 250);
+
+    setTimeout(function () {
+      expect(getPixelColor(ctx, 1, 0)).toEqual({ r: 255, g: 0, b: 0, a: 255 });
+      expect(getPixelColor(ctx, 0, 1)).toEqual({ r: 0, g: 255, b: 0, a: 255 });
+      expect(getPixelColor(ctx, 1, 1)).toEqual({ r: 0, g: 0, b: 255, a: 255 });
+    }, 300);
+
+    setTimeout(done, 400);
+
+  });
+
 });
 
 // utils
