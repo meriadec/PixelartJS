@@ -1,6 +1,6 @@
 {
   "name": "PixelartJS",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A simple and lightweight tool for generating pixel art",
   "main": "dist/pixelart.js",
   "scripts": {
