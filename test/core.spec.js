@@ -57,7 +57,7 @@ describe('PixelartJS', function () {
     var el = document.createElement('div');
     el.id = 'yolo';
     document.body.appendChild(el);
-    var p = new Pixelart($('#yolo'), mock.ascii_1);
+    new Pixelart($('#yolo'), mock.ascii_1);
     expect(el.firstElementChild).not.toBeNull();
     expect(el.firstElementChild.nodeName).toBe('CANVAS');
   });
