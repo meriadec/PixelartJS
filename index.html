@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Demo</title>
+    <title>PixelartJS - Showoff</title>
     <link rel="stylesheet" href="solarized.css">
     <link href='http://fonts.googleapis.com/css?family=Domine' rel='stylesheet' type='text/css'>
+    <link href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="demo.css">
   </head>
   <body>
@@ -11,7 +12,10 @@
     <div id="logo"></div>
 
     <div class="github">
-      <a target="_blank" href="http://github.com/meriadec/PixelartJS">see project on github</a>
+      <a target="_blank" href="http://github.com/meriadec/PixelartJS">
+        <i class="ion-social-github"></i>
+        see project on github
+      </a>
     </div>
 
 
@@ -32,7 +36,7 @@
     'o o     o o',
     '   oo oo'
   ]
-).draw();
+);
 </code></pre>
     </div>
 
@@ -60,7 +64,7 @@
     '  ooooooo'
   ],
   { color: '#FFEE00' }
-).draw();
+);
 </code></pre>
     </div>
 
@@ -94,7 +98,140 @@
       d: '#bed9ba'
     }
   }
-).draw();
+);
+</code></pre>
+    </div>
+
+
+
+
+   <div class="demo-title">
+     Stagger
+        <button id="staggerAgain" class="nice-btn">
+          <i class="ion-ios-refresh-empty"></i>
+          <span>
+          run again
+          </span>
+        </button>
+   </div>
+   <div class="demo">
+      <section>
+        <div id="stagger"></div>
+      </section>
+      <pre><code class="javascript">new Pixelart(
+  document.getElementById('stagger'),
+  [
+    ' oo        oo',
+    'o  o oooo o  o',
+    '    oooooo',
+    ' oooooooooooo',
+    'o   oooooo   o',
+    '  ooo oo ooo',
+    ' o  oooooo  o',
+    'o  o o  o o  o',
+    '  o        o',
+    '  o        o'
+  ],
+  {
+    stagger: 30
+  }
+);
+</code></pre>
+    </div>
+
+
+
+
+   <div class="demo-title">
+     Animate
+        <button id="animateAgain" class="nice-btn">
+          <i class="ion-ios-refresh-empty"></i>
+          <span>
+          run again
+          </span>
+        </button>
+   </div>
+   <div class="demo">
+      <section>
+        <div id="animate"></div>
+      </section>
+      <pre><code class="javascript">new Pixelart(
+  document.getElementById('stagger'),
+      [
+        ' o o ',
+        '     ',
+        '     ',
+        '     ',
+        ' ooo ',
+        'o   o',
+      ],
+      [
+        ' o o ',
+        '     ',
+        '     ',
+        '     ',
+        'ooooo',
+        '     ',
+      ],
+      [
+        ' o o ',
+        '     ',
+        '     ',
+        'o   o',
+        ' ooo ',
+        '     ',
+      ],
+    ],
+    {
+      speed: 500
+    }
+  );
+}
+</code></pre>
+    </div>
+
+
+
+
+   <div class="demo-title">
+     Animate with infinite loop
+   </div>
+   <div class="demo">
+      <section>
+        <div id="animateLoop"></div>
+      </section>
+      <pre><code class="javascript">new Pixelart(
+  document.getElementById('stagger'),
+      [
+        ' o o ',
+        '     ',
+        '     ',
+        '     ',
+        ' ooo ',
+        'o   o',
+      ],
+      [
+        ' o o ',
+        '     ',
+        '     ',
+        '     ',
+        'ooooo',
+        '     ',
+      ],
+      [
+        ' o o ',
+        '     ',
+        '     ',
+        'o   o',
+        ' ooo ',
+        '     ',
+      ],
+    ],
+    {
+      speed: 500
+    }
+  );
+}
 </code></pre>
     </div>
 
@@ -106,16 +243,37 @@
       <div>
         Made with
       </div>
-      <div>
-        <span id="heart"></span>
+      <div><a href="http://www.vim.org/" target="_blank">
+          <span id="vim"></span></a>
       </div>
     </div>
 
-    <script src="https://cdn.rawgit.com/meriadec/PixelartJS/1ab80018f109d00b5bdc8610d9054e5801bfbb3b/dist/pixelart.min.js"></script>
+    <script src="https://rawgit.com/meriadec/PixelartJS/master/dist/pixelart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 
     <script>
+
+      // Vim
+      new Pixelart(
+        document.getElementById('vim'),
+        [
+          ',,,,,,,,,,,,,,,,,,,,,,,,,,,,',
+          ',oo,,,,,,,,oo,oo,ooo,,,,ooo,',
+          ',,oo,,,,,,oo,,oo,oooo,,oooo,',
+          ',,,oo,,,,oo,,,oo,oo,oooo,oo,',
+          ',,,,oo,,oo,,,,oo,oo,,oo,,oo,',
+          ',,,,,oooo,,,,,oo,oo,,,,,,oo,',
+          ',,,,,,oo,,,,,,oo,oo,,,,,,oo,',
+          ',,,,,,,,,,,,,,,,,,,,,,,,,,,,'
+        ],
+        {
+          pixelSize: 3,
+          colorMap: {
+            ',': '#FFFFFF'
+          }
+        }
+      );
 
       // Title
 
@@ -134,39 +292,16 @@
           a: '#002b36',
           b: '#586e75',
           c: '#586e75',
-          d: '#657b83',
+          d: '#073642',
           e: '#839496',
           f: '#93a1a1',
           g: '#93a1a1',
           h: '#93a1a1',
           i: '#d33682',
-          j: '#6c71c4',
-          k: '#268bd2'
+          j: '#b58900',
+          k: '#b58900'
         }
-      }).draw();
-
-      // Hearth
-
-      new Pixelart(
-        document.getElementById('heart'),
-        [
-          '  ooo   ooo',
-          ' ooooo ooooo',
-          'ooooooooooooo',
-          'ooooooooooooo',
-          'ooooooooooooo',
-          ' ooooooooooo',
-          '  ooooooooo',
-          '   ooooooo',
-          '    ooooo',
-          '     ooo',
-          '      o'
-        ],
-        {
-          pixelSize: 2,
-          color: '#FF0000'
-        }
-      ).draw();
+      });
 
       // Basic
 
@@ -182,7 +317,7 @@
           'o o     o o',
           '   oo oo'
         ]
-      ).draw();
+      );
 
       // Colored
 
@@ -202,7 +337,7 @@
           '  ooooooo'
         ],
         { color: '#FFEE00' }
-      ).draw();
+      );
 
       // Color map
 
@@ -228,7 +363,104 @@
             d: '#bed9ba'
           }
         }
-      ).draw();
+      );
+
+      // Stagger
+
+      function runStagger () {
+        var stagger = document.getElementById('stagger');
+        while (stagger.firstChild) { stagger.removeChild(stagger.firstChild); }
+        new Pixelart(
+          stagger,
+          [
+            ' oo        oo',
+            'o  o oooo o  o',
+            '    oooooo',
+            ' oooooooooooo',
+            'o   oooooo   o',
+            '  ooo oo ooo',
+            ' o  oooooo  o',
+            'o  o o  o o  o',
+            '  o        o',
+            '  o        o'
+          ],
+          {
+            stagger: 30
+          }
+        );
+      }
+      runStagger();
+      document.getElementById('staggerAgain').onclick = runStagger;
+
+      // Animate
+
+      function runAnimate () {
+        var anim = document.getElementById('animate');
+        new Pixelart(anim, [
+            [
+              ' o o ',
+              '     ',
+              '     ',
+              '     ',
+              ' ooo ',
+              'o   o',
+            ],
+            [
+              ' o o ',
+              '     ',
+              '     ',
+              '     ',
+              'ooooo',
+              '     ',
+            ],
+            [
+              ' o o ',
+              '     ',
+              '     ',
+              'o   o',
+              ' ooo ',
+              '     ',
+            ],
+          ],
+          {
+            speed: 500
+          }
+        );
+      }
+      runAnimate();
+      document.getElementById('animateAgain').onclick = runAnimate;
+
+      new Pixelart(document.getElementById('animateLoop'), [
+          [
+            ' o o ',
+            '     ',
+            '     ',
+            '     ',
+            ' ooo ',
+            'o   o',
+          ],
+          [
+            ' o o ',
+            '     ',
+            '     ',
+            '     ',
+            'ooooo',
+            '     ',
+          ],
+          [
+            ' o o ',
+            '     ',
+            '     ',
+            'o   o',
+            ' ooo ',
+            '     ',
+          ],
+        ],
+        {
+          speed: 500,
+          loop: true
+        }
+      );
 
     </script>
   </body>
