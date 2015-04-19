@@ -142,6 +142,102 @@
 
 
 
+   <div class="demo-title">
+     Animate
+        <button id="animateAgain" class="nice-btn">
+          <i class="ion-ios-refresh-empty"></i>
+          <span>
+          run again
+          </span>
+        </button>
+   </div>
+   <div class="demo">
+      <section>
+        <div id="animate"></div>
+      </section>
+      <pre><code class="javascript">new Pixelart(
+  document.getElementById('stagger'),
+      [
+        ' o o ',
+        '     ',
+        '     ',
+        '     ',
+        ' ooo ',
+        'o   o',
+      ],
+      [
+        ' o o ',
+        '     ',
+        '     ',
+        '     ',
+        'ooooo',
+        '     ',
+      ],
+      [
+        ' o o ',
+        '     ',
+        '     ',
+        'o   o',
+        ' ooo ',
+        '     ',
+      ],
+    ],
+    {
+      speed: 500
+    }
+  );
+}
+</code></pre>
+    </div>
+
+
+
+
+   <div class="demo-title">
+     Animate with infinite loop
+   </div>
+   <div class="demo">
+      <section>
+        <div id="animateLoop"></div>
+      </section>
+      <pre><code class="javascript">new Pixelart(
+  document.getElementById('stagger'),
+      [
+        ' o o ',
+        '     ',
+        '     ',
+        '     ',
+        ' ooo ',
+        'o   o',
+      ],
+      [
+        ' o o ',
+        '     ',
+        '     ',
+        '     ',
+        'ooooo',
+        '     ',
+      ],
+      [
+        ' o o ',
+        '     ',
+        '     ',
+        'o   o',
+        ' ooo ',
+        '     ',
+      ],
+    ],
+    {
+      speed: 500
+    }
+  );
+}
+</code></pre>
+    </div>
+
+
+
+
 
     <div class="footer">
       <div>
@@ -295,6 +391,76 @@
       }
       runStagger();
       document.getElementById('staggerAgain').onclick = runStagger;
+
+      // Animate
+
+      function runAnimate () {
+        var anim = document.getElementById('animate');
+        new Pixelart(anim, [
+            [
+              ' o o ',
+              '     ',
+              '     ',
+              '     ',
+              ' ooo ',
+              'o   o',
+            ],
+            [
+              ' o o ',
+              '     ',
+              '     ',
+              '     ',
+              'ooooo',
+              '     ',
+            ],
+            [
+              ' o o ',
+              '     ',
+              '     ',
+              'o   o',
+              ' ooo ',
+              '     ',
+            ],
+          ],
+          {
+            speed: 500
+          }
+        );
+      }
+      runAnimate();
+      document.getElementById('animateAgain').onclick = runAnimate;
+
+      new Pixelart(document.getElementById('animateLoop'), [
+          [
+            ' o o ',
+            '     ',
+            '     ',
+            '     ',
+            ' ooo ',
+            'o   o',
+          ],
+          [
+            ' o o ',
+            '     ',
+            '     ',
+            '     ',
+            'ooooo',
+            '     ',
+          ],
+          [
+            ' o o ',
+            '     ',
+            '     ',
+            'o   o',
+            ' ooo ',
+            '     ',
+          ],
+        ],
+        {
+          speed: 500,
+          loop: true
+        }
+      );
 
     </script>
   </body>

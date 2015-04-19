@@ -22,60 +22,24 @@
    */
   function Pixelart (target, ascii, options) {
 
-    this._ensureDefined(['target', target], ['ascii', ascii]);
+    ensureDefined(['target', target], ['ascii', ascii]);
 
-    this.ascii = ascii;
     this.target = target.jquery ? target[0] : target;
-    this.options = options;
+    this.options = cleanOptions(options);
 
-    this._cleanOptions();
+    if (multipleAscii(ascii)) {
+      this.multiple = true;
+      this.frames = ascii;
+      this.ascii = ascii[0];
+    } else {
+      this.ascii = ascii;
+    }
+
     this.draw();
 
     return this;
 
   }
-
-  /**
-   * Throw if any of the given parameters is undefined
-   *
-   * @private
-   */
-  Pixelart.prototype._ensureDefined = function () {
-    Array.prototype.slice.call(arguments).forEach(function (item) {
-      if (item[1] === void 0) { throw new Error('required argument ' + item[0]); }
-    });
-  };
-
-  /**
-   * Clean the options object
-   *
-   * @private
-   */
-  Pixelart.prototype._cleanOptions = function () {
-    if (!this.options) { this.options = {}; }
-    this.options = {
-      pixelSize: this.options.pixelSize || 10,
-      color: this.options.color ? hexToRgb(this.options.color) : { r: 0, g: 0, b: 0 },
-      colorMap: this.options.colorMap ? this._buildColorMap(this.options.colorMap) : null,
-      stagger: this.options.stagger || 0
-    };
-  };
-
-  /**
-   * Generate the real color map with the option color map
-   * (the colors will be rgb instead of hex)
-   *
-   * @param input
-   * @returns {object}
-   * @private
-   */
-  Pixelart.prototype._buildColorMap = function (input) {
-    var colorMap = {};
-    Object.keys(input).forEach(function (key) {
-      colorMap[key] = hexToRgb(input[key]);
-    });
-    return colorMap;
-  };
 
   /**
    * Number of cols of the output
@@ -84,9 +48,14 @@
    */
   Pixelart.prototype.cols = function () {
     var w = 0;
-    this._iterateRows(function (row) {
+    function onRow (row) {
       if (row.length > w) { w = row.length; }
-    });
+    }
+    if (this.multiple) {
+      for (var i = 0; i < this.frames.length; i++) {
+        _iterateRows(this.frames[i], onRow);
+      }
+    } else { _iterateRows(this.ascii, onRow); }
     return w;
   };
 
@@ -96,6 +65,13 @@
    * @returns {number}
    */
   Pixelart.prototype.rows = function () {
+    if (this.multiple) {
+      var max = 0;
+      for (var i = 0; i < this.frames.length; i++) {
+        if (this.frames[i].length > max) { max = this.frames[i].length; }
+      }
+      return max;
+    }
     return this.ascii.length;
   };
 
@@ -131,34 +107,6 @@
   };
 
   /**
-   * Iterate through rows
-   *
-   * @param {function} cb
-   * @private
-   */
-  Pixelart.prototype._iterateRows = function (cb) {
-    var self = this;
-    this.ascii.forEach(function (row, y) {
-      cb.apply(self, [row, y]);
-    });
-  };
-
-  /**
-   * Iterate through each block
-   *
-   * @param {function} cb
-   * @private
-   */
-  Pixelart.prototype._iterate = function (cb) {
-    var self = this;
-    this._iterateRows(function (row, y) {
-      this.ascii[y].split('').forEach(function (char, x) {
-        cb.apply(self, [char, x, y]);
-      });
-    });
-  };
-
-  /**
    * Return the default color
    *
    * @returns {object}
@@ -174,15 +122,42 @@
    */
   Pixelart.prototype.draw = function () {
 
+    var self = this;
+
     // clean element
     while (this.target.firstChild) { this.target.removeChild(this.target.firstChild); }
 
     var canvas = this._createCanvas();
     var ctx = canvas.getContext('2d');
+
+    this.target.appendChild(canvas);
+
+    if (this.multiple) {
+      var w = this.width();
+      var h = this.height();
+      for (var i = 0; i < this.frames.length; i++) {
+        var delay = (this.options.speed + this.options.stagger) * i;
+        setTimeout(makeDrawAscii(self, ctx, self.frames[i], i > 0, w, h), delay);
+      }
+      if (this.options.loop) {
+        setTimeout(function () {
+          self.draw.apply(self);
+        }, (this.options.speed + this.options.stagger) * (this.frames.length));
+      }
+    } else {
+      this._drawAscii(ctx, this.ascii);
+    }
+
+    return this;
+
+  };
+
+  Pixelart.prototype._drawAscii = function (ctx, ascii) {
+
     var i = 0;
     var fillStyle;
 
-    this._iterate(function (char, x, y) {
+    _iterate(ascii, function (char, x, y) {
       if (char === ' ') { return; }
       if (this.options.colorMap && char in this.options.colorMap) {
         fillStyle = canvasColor(this.options.colorMap[char]);
@@ -210,11 +185,7 @@
         );
       }
       ++i;
-    });
-
-    this.target.appendChild(canvas);
-
-    return this;
+    }, this);
 
   };
 
@@ -247,6 +218,86 @@
 
   function canvasColor (color) {
     return 'rgb(' + color.r + ', ' + color.g + ', ' + color.b + ')';
+  }
+
+  function cleanOptions (opts) {
+    if (!opts) { opts = {}; }
+    return {
+      pixelSize: opts.pixelSize || 10,
+      color: opts.color ? hexToRgb(opts.color) : { r: 0, g: 0, b: 0 },
+      colorMap: opts.colorMap ? buildColorMap(opts.colorMap) : null,
+      stagger: opts.stagger || 0,
+      speed: opts.speed || 1000,
+      loop: !!opts.loop
+    };
+  }
+
+  function multipleAscii (tab) {
+    if (Object.prototype.toString.call(tab) !== '[object Array]') {
+      throw new Error('ascii arguments needs an Array, instead got a ' + (typeof tab));
+    }
+    return (tab[0] && typeof tab[0] !== 'string');
+  }
+
+  /**
+   * Generate the real color map with the option color map
+   * (the colors will be rgb instead of hex)
+   *
+   * @param input
+   * @returns {object}
+   */
+  function buildColorMap (input) {
+    var colorMap = {};
+    Object.keys(input).forEach(function (key) {
+      colorMap[key] = hexToRgb(input[key]);
+    });
+    return colorMap;
+  }
+
+  /**
+   * Throw if any of the given parameters is undefined
+   */
+  function ensureDefined () {
+    Array.prototype.slice.call(arguments).forEach(function (item) {
+      if (item[1] === void 0) { throw new Error('required argument ' + item[0]); }
+    });
+  }
+
+  /**
+   * Iterate through rows
+   *
+   * @param {array} ascii
+   * @param {function} cb
+   * @param {class} instance
+   * @private
+   */
+  function _iterateRows (ascii, cb, instance) {
+    ascii.forEach(function (row, y) {
+      cb.apply(instance || this, [row, y]);
+    });
+  }
+
+  /**
+   * Iterate through each block
+   *
+   * @param {array} ascii
+   * @param {function} cb
+   * @param {class} instance
+   * @private
+   */
+  function _iterate (ascii, cb, instance) {
+    _iterateRows(ascii, function (row, y) {
+      ascii[y].split('').forEach(function (char, x) {
+        cb.apply(instance || this, [char, x, y]);
+      });
+    });
+  }
+
+  function makeDrawAscii (instance, ctx, ascii, clearCanvas, w, h) {
+    return function () {
+      if (clearCanvas) { ctx.clearRect(0, 0, w, h); }
+      instance._drawAscii(ctx, ascii);
+    };
   }
 
   return Pixelart;

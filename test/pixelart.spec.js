@@ -32,6 +32,10 @@ describe('PixelartJS', function () {
     expect(function () { new Pixelart(elem); }).toThrow(new Error('required argument ascii'));
   });
 
+  it('should throw if given a bad ascii', function () {
+    expect(function () { new Pixelart(elem, 'yolo'); }).toThrow();
+  });
+
   it('should calculate the right dimensions', function () {
     var p = new Pixelart(elem, ascii_1, { pixelSize: 4 });
     expect(p.cols()).toBe(39);
@@ -199,16 +203,94 @@ describe('PixelartJS', function () {
 
   });
 
+  it('should calculate the max dimensions when passing multiple asciis', function (done) {
+    var p = new Pixelart(elem, [['o'], [' o'], [
+      '  o',
+      'o'
+    ]], { speed: 20 });
+    expect(p.rows()).toBe(2);
+    setTimeout(done, 80);
+  });
+
+  it('should animate when passing multiple asciis', function (done) {
+
+    new Pixelart(elem, [['o'], [' o'], ['  o']], { speed: 20, pixelSize: 1 });
+    var canvas = elem.firstElementChild;
+    var ctx = canvas.getContext('2d');
+
+    setTimeout(function () {
+      expect(getPixelColor(ctx, 0, 0)).toEqual({ r: 0, g: 0, b: 0, a: 255 });
+      expect(getPixelColor(ctx, 1, 0)).toEqual({ r: 0, g: 0, b: 0, a: 0 });
+      expect(getPixelColor(ctx, 2, 0)).toEqual({ r: 0, g: 0, b: 0, a: 0 });
+    }, 10);
+
+    setTimeout(function () {
+      expect(getPixelColor(ctx, 0, 0)).toEqual({ r: 0, g: 0, b: 0, a: 0 });
+      expect(getPixelColor(ctx, 1, 0)).toEqual({ r: 0, g: 0, b: 0, a: 255 });
+      expect(getPixelColor(ctx, 2, 0)).toEqual({ r: 0, g: 0, b: 0, a: 0 });
+    }, 30);
+
+    setTimeout(function () {
+      expect(getPixelColor(ctx, 0, 0)).toEqual({ r: 0, g: 0, b: 0, a: 0 });
+      expect(getPixelColor(ctx, 1, 0)).toEqual({ r: 0, g: 0, b: 0, a: 0 });
+      expect(getPixelColor(ctx, 2, 0)).toEqual({ r: 0, g: 0, b: 0, a: 255 });
+    }, 50);
+
+    setTimeout(done, 80);
+
+  });
+
+  it('should loop animation', function (done) {
+
+    new Pixelart(elem, [['o '], [' o']], {
+      speed: 100,
+      pixelSize: 1,
+      loop: true
+    });
+
+    var ctx = getContext();
+
+    setTimeout(function () {
+      expect(getPixelColor(ctx, 0, 0)).toEqual({ r: 0, g: 0, b: 0, a: 255 });
+      expect(getPixelColor(ctx, 1, 0)).toEqual({ r: 0, g: 0, b: 0, a: 0 });
+    }, 50);
+
+    setTimeout(function () {
+      expect(getPixelColor(ctx, 0, 0)).toEqual({ r: 0, g: 0, b: 0, a: 0 });
+      expect(getPixelColor(ctx, 1, 0)).toEqual({ r: 0, g: 0, b: 0, a: 255 });
+    }, 150);
+
+    setTimeout(function () {
+      ctx = getContext();
+      expect(getPixelColor(ctx, 0, 0)).toEqual({ r: 0, g: 0, b: 0, a: 255 });
+      expect(getPixelColor(ctx, 1, 0)).toEqual({ r: 0, g: 0, b: 0, a: 0 });
+    }, 250);
+
+    setTimeout(function () {
+      expect(getPixelColor(ctx, 0, 0)).toEqual({ r: 0, g: 0, b: 0, a: 0 });
+      expect(getPixelColor(ctx, 1, 0)).toEqual({ r: 0, g: 0, b: 0, a: 255 });
+    }, 350);
+
+    setTimeout(done, 500);
+
+  });
+
+  // utils
+
+  function getPixelColor (ctx, x, y) {
+    var data = ctx.getImageData(x, y, 1, 1).data;
+    return {
+      r: data[0],
+      g: data[1],
+      b: data[2],
+      a: data[3]
+    };
+  }
+
+  function getContext () {
+    var canvas = elem.firstElementChild;
+    var ctx = canvas.getContext('2d');
+    return ctx;
+  }
+
 });
-
-// utils
-
-function getPixelColor (ctx, x, y) {
-  var data = ctx.getImageData(x, y, 1, 1).data;
-  return {
-    r: data[0],
-    g: data[1],
-    b: data[2],
-    a: data[3]
-  };
-}

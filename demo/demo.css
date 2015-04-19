@@ -137,6 +137,6 @@ body {
   width: 20px;
 }
 
-#staggerAgain {
+#staggerAgain, #animateAgain {
   margin-left: 30px;
 }

@@ -36,6 +36,8 @@ Add dependency:
 
 ## Usage
 
+**Basic**
+
 ```html
 <div id="myImage"></div>
 ```
@@ -49,16 +51,23 @@ var ascii  = [
   'oooo o  o'
 ];
 
-new Pixelart(target, ascii);
+new Pixelart(target, ascii, {
+  // options here (optional)
+});
+```
+**Pass an array of ascii for cool animated sprites :)**
 
-// passing options
-
-var options = {
-  // ...
-};
-
-new Pixelart(target, ascii, options);
-
+```js
+// ultra basic pixelart loader
+new Pixelart(
+  target,
+  [
+    ['o'],
+    [' o'],
+    ['  o']
+  ],
+  { speed: 200, loop: true }
+);
 ```
 
 ## Options
@@ -115,6 +124,33 @@ new Pixelart(
   ascii,
   {
     stagger: 50
+  }
+});
+```
+
+### speed
+
+Type: `Number (of milliseconds)`
+
+*Delay between each frame, when passing an array of sprites. (default 1000ms)*
+
+```js
+new Pixelart(
+  target,
+  [
+    [
+      'o',
+      ' o',
+      'o',
+    ],
+    [
+      '  o',
+      '   o',
+      '  o',
+    ],
+  ],
+  {
+    speed: 50
   }
 });
 ```
