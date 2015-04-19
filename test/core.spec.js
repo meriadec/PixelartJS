@@ -172,6 +172,16 @@ describe('PixelartJS', function () {
 
   });
 
+  it('should delete canvas on calling destroy', function () {
+
+    expect(elem.firstElementChild).toBeNull();
+    var p = new Pixelart(elem, mock.ascii_1);
+    expect(elem.firstElementChild).not.toBeNull();
+    p.destroy();
+    expect(elem.firstElementChild).toBeNull();
+
+  });
+
 });
 
 // utils

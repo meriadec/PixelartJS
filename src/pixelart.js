@@ -134,6 +134,13 @@ var Pixelart = (function () { // jshint ignore:line
 
   };
 
+  /**
+   * Delete the canvas
+   */
+  Pixelart.prototype.destroy = function () {
+    this.target.removeChild(this.target.firstElementChild);
+  };
+
   // utils
 
   function drawRect (ctx, fillStyle, x, y, size) {
