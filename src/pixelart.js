@@ -2,6 +2,15 @@
 
 var Pixelart = (function () { // jshint ignore:line
 
+  /**
+   * Creates a new Pixelart
+   *
+   * @param target
+   * @param ascii
+   * @param options
+   * @returns {Pixelart}
+   * @constructor
+   */
   function Pixelart (target, ascii, options) {
 
     this._ensureDefined(['target', target], ['ascii', ascii]);
@@ -17,12 +26,22 @@ var Pixelart = (function () { // jshint ignore:line
 
   }
 
+  /**
+   * Throw if any of the given parameters is undefined
+   *
+   * @private
+   */
   Pixelart.prototype._ensureDefined = function () {
     Array.prototype.slice.call(arguments).forEach(function (item) {
       if (item[1] === void 0) { throw new Error('required argument ' + item[0]); }
     });
   };
 
+  /**
+   * Clean the options object
+   *
+   * @private
+   */
   Pixelart.prototype._cleanOptions = function () {
     if (!this.options) { this.options = {}; }
     this.options = {
@@ -33,6 +52,14 @@ var Pixelart = (function () { // jshint ignore:line
     };
   };
 
+  /**
+   * Generate the real color map with the option color map
+   * (the colors will be rgb instead of hex)
+   *
+   * @param input
+   * @returns {object}
+   * @private
+   */
   Pixelart.prototype._buildColorMap = function (input) {
     var colorMap = {};
     Object.keys(input).forEach(function (key) {
@@ -41,6 +68,11 @@ var Pixelart = (function () { // jshint ignore:line
     return colorMap;
   };
 
+  /**
+   * Number of cols of the output
+   *
+   * @returns {number}
+   */
   Pixelart.prototype.cols = function () {
     var w = 0;
     this._iterateRows(function (row) {
@@ -49,18 +81,39 @@ var Pixelart = (function () { // jshint ignore:line
     return w;
   };
 
+  /**
+   * Number of rows of the output
+   *
+   * @returns {number}
+   */
   Pixelart.prototype.rows = function () {
     return this.ascii.length;
   };
 
+  /**
+   * Width in pixel of the output
+   *
+   * @returns {number}
+   */
   Pixelart.prototype.width = function () {
     return this.cols() * this.options.pixelSize;
   };
 
+  /**
+   * Height in pixel of the output
+   *
+   * @returns {number}
+   */
   Pixelart.prototype.height = function () {
     return this.rows() * this.options.pixelSize;
   };
 
+  /**
+   * Create the canvas element
+   *
+   * @returns {Element}
+   * @private
+   */
   Pixelart.prototype._createCanvas = function () {
     var canvas = document.createElement('canvas');
     canvas.width = this.width();
@@ -68,6 +121,12 @@ var Pixelart = (function () { // jshint ignore:line
     return canvas;
   };
 
+  /**
+   * Iterate through rows
+   *
+   * @param {function} cb
+   * @private
+   */
   Pixelart.prototype._iterateRows = function (cb) {
     var self = this;
     this.ascii.forEach(function (row, y) {
@@ -75,6 +134,12 @@ var Pixelart = (function () { // jshint ignore:line
     });
   };
 
+  /**
+   * Iterate through each block
+   *
+   * @param {function} cb
+   * @private
+   */
   Pixelart.prototype._iterate = function (cb) {
     var self = this;
     this._iterateRows(function (row, y) {
@@ -84,10 +149,20 @@ var Pixelart = (function () { // jshint ignore:line
     });
   };
 
+  /**
+   * Return the default color
+   *
+   * @returns {object}
+   */
   Pixelart.prototype.color = function () {
     return this.options.color;
   };
 
+  /**
+   * Draw the output
+   *
+   * @returns {Pixelart}
+   */
   Pixelart.prototype.draw = function () {
 
     // clean element
