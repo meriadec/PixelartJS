@@ -5,6 +5,11 @@
   "authors": [
     "meriadec <meriadec.pillet@gmail.com>"
   ],
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
   "description": "A simple and lightweight tool for generating pixel art",
   "main": "dist/pixelart.min.js",
   "keywords": [

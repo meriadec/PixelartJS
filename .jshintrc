@@ -18,6 +18,7 @@
     "beforeEach": true,
     "afterEach": true,
     "expect": true,
+    "define": true,
     "it": true,
     "mock": true,
     "$": true,

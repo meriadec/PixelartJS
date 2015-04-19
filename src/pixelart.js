@@ -1,6 +1,15 @@
-'use strict';
+(function (root, factory) {
+  'use strict';
+  if (typeof define === 'function' && define.amd) {
+    define([], factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory();
+  } else {
+    root.Pixelart = factory();
+  }
+})(this, function () {
 
-var Pixelart = (function () { // jshint ignore:line
+  'use strict';
 
   /**
    * Creates a new Pixelart
@@ -242,4 +251,4 @@ var Pixelart = (function () { // jshint ignore:line
 
   return Pixelart;
 
-})();
+});
