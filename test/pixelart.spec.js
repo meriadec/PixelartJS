@@ -51,6 +51,14 @@ describe('PixelartJS', function () {
     expect(elem.firstElementChild.offsetHeight).toBe(p.height());
   });
 
+  it('should clear target before draw', function () {
+    expect(elem.childNodes.length).toBe(0);
+    new Pixelart(elem, ascii_1);
+    expect(elem.childNodes.length).toBe(1);
+    new Pixelart(elem, ascii_1);
+    expect(elem.childNodes.length).toBe(1);
+  });
+
   it('should set custom color', function () {
     var p = new Pixelart(elem, ascii_1, { color: '#FF0000' });
     expect(p.color()).toEqual({ r: 255, g: 0, b: 0 });
