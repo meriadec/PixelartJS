@@ -1,5 +1,14 @@
 'use strict';
 
+var ascii_1 = [
+  'ooooooooooooooooooooooooooooooooooooooo',
+  'o o',
+  'o  o oooo o  o oooo o  o o    oooo oooo',
+  'o o     o oo o o    o  o o       o o',
+  '   o oo o o oo o oo o  o o    oo o o o',
+  'o o  oooo o  o oooo oooo oooo oooo o  o'
+];
+
 describe('PixelartJS', function () {
 
   var elem;
@@ -24,7 +33,7 @@ describe('PixelartJS', function () {
   });
 
   it('should calculate the right dimensions', function () {
-    var p = new Pixelart(elem, mock.ascii_1, { pixelSize: 4 });
+    var p = new Pixelart(elem, ascii_1, { pixelSize: 4 });
     expect(p.cols()).toBe(39);
     expect(p.rows()).toBe(6);
     expect(p.width()).toBe(156);
@@ -33,7 +42,7 @@ describe('PixelartJS', function () {
 
   it('should create a canvas, with right dimensions', function () {
 
-    var p = new Pixelart(elem, mock.ascii_1);
+    var p = new Pixelart(elem, ascii_1);
 
     expect(elem.firstElementChild).not.toBeNull();
     expect(elem.firstElementChild.nodeName).toBe('CANVAS');
@@ -43,13 +52,13 @@ describe('PixelartJS', function () {
   });
 
   it('should set custom color', function () {
-    var p = new Pixelart(elem, mock.ascii_1, { color: '#FF0000' });
+    var p = new Pixelart(elem, ascii_1, { color: '#FF0000' });
     expect(p.color()).toEqual({ r: 255, g: 0, b: 0 });
   });
 
   it('should throw on invalid color', function () {
     expect(function () {
-      new Pixelart(elem, mock.ascii_1, { color: 'z' });
+      new Pixelart(elem, ascii_1, { color: 'z' });
     }).toThrow(new Error('Invalid color: z'));
   });
 
@@ -57,7 +66,7 @@ describe('PixelartJS', function () {
     var el = document.createElement('div');
     el.id = 'yolo';
     document.body.appendChild(el);
-    new Pixelart($('#yolo'), mock.ascii_1);
+    new Pixelart($('#yolo'), ascii_1);
     expect(el.firstElementChild).not.toBeNull();
     expect(el.firstElementChild.nodeName).toBe('CANVAS');
   });
@@ -175,7 +184,7 @@ describe('PixelartJS', function () {
   it('should delete canvas on calling destroy', function () {
 
     expect(elem.firstElementChild).toBeNull();
-    var p = new Pixelart(elem, mock.ascii_1);
+    var p = new Pixelart(elem, ascii_1);
     expect(elem.firstElementChild).not.toBeNull();
     p.destroy();
     expect(elem.firstElementChild).toBeNull();

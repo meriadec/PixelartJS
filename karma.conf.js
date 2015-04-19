@@ -15,8 +15,7 @@ module.exports = function (config) {
     files: [
       'node_modules/jquery/dist/jquery.min.js',
       'src/*.js',
-      'test/*.spec.js',
-      'test/*.mock.js'
+      'test/*.spec.js'
     ],
     exclude: [],
     reporters: ['progress', 'coverage'],
